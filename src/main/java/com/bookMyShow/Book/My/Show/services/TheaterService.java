@@ -36,6 +36,7 @@ public class TheaterService {
         List<TheaterSeat> theaterSeatList=new ArrayList<>();
         int cols=5;
         int row=0;
+        // logic for classic seats
         for(int i=0;i<theaterSeatsRequest.getNoOfClassicSeats();i++){
             // construct seat number with row + alphabet
             int pos=i%cols;
@@ -53,7 +54,7 @@ public class TheaterService {
 
             theaterSeatList.add(theaterSeat);
         }
-        row++;
+        // logic for premium seats
         for(int i=0;i<theaterSeatsRequest.getNoOfPremiumSeats();i++){
             // construct seat number with row + alphabet
             int pos=i%cols;
@@ -74,6 +75,8 @@ public class TheaterService {
 
         // save the list to DB
         theaterSeatsRepository.saveAll(theaterSeatList);
+        theater.setTheaterSeats(theaterSeatList); // apply bidirectional mapping
+        theaterRepository.save(theater);
         return "theater seats are associated successfully";
     }
 }

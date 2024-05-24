@@ -6,24 +6,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Entity
-@Table(name = "theaters")
+@Table(name = "users")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Theater {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer theaterId;
-    private Integer noOfScreens;
+    private Integer userId;
+    private Integer age;
     private String name;
-    private String address;
-
-    // bidirectional mapping for child records
-    @OneToMany(mappedBy = "theater",cascade = CascadeType.ALL)
-    List<TheaterSeat> theaterSeats;
-
+    private String email;
+    private String mobile;
 }
