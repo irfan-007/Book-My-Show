@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "movies")
@@ -22,4 +24,6 @@ public class Movie {
     @Enumerated(value = EnumType.STRING)
     private Language language;
     private Double rating;
+    @OneToMany(mappedBy = "movie",cascade = CascadeType.ALL)
+    private List<Show> shows=new ArrayList<>();
 }

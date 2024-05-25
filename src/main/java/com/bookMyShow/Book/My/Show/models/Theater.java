@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -24,6 +25,7 @@ public class Theater {
 
     // bidirectional mapping for child records
     @OneToMany(mappedBy = "theater",cascade = CascadeType.ALL)
-    List<TheaterSeat> theaterSeats;
-
+    private List<TheaterSeat> theaterSeats=new ArrayList<>();
+    @OneToMany(mappedBy = "theater",cascade = CascadeType.ALL)
+    private List<Show> shows=new ArrayList<>();
 }

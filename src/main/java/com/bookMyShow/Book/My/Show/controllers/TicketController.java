@@ -21,5 +21,6 @@ public class TicketController {
     @GetMapping("generate-ticket")
     public TicketResponse generateTicket(@RequestParam String ticketId){
         TicketResponse res=ticketService.generateTicket(ticketId);
+        return res;
     }
 }

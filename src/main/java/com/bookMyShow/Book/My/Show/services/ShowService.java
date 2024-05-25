@@ -55,6 +55,17 @@ public class ShowService {
         showSeatsRepository.saveAll(showSeatList);
         show.setShowSeatList(showSeatList);
         showRepository.save(show);
+        // bidirectional mapping for movie and theater
+        List<Show> showList=theater.getShows();
+        showList.add(show);
+        theater.setShows(showList);
+        theaterRepository.save(theater);
+
+        List<Show> showList1=movie.getShows();
+        showList1.add(show);
+        movie.setShows(showList1);
+        movieRepository.save(movie);
+
         return "show is added to DB with id="+show.getShowId();
     }
 }
