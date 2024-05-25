@@ -57,7 +57,7 @@ public class TicketService {
                 .showDate(show.getShowDate())
                 .theaterName(show.getTheater().getName())
                 .movieName(show.getMovie().getMovieName())
-                .bookedSeats(bookTicketRequest.getBookingSeats())
+                .bookedSeats(bookTicketRequest.getBookingSeats().toString())
                 .user(user)
                 .show(show)
         .build();
@@ -66,6 +66,11 @@ public class TicketService {
         showSeatsRepository.saveAll(showSeatList);
         ticketRepository.save(ticket);
         // return ticket response DTO
+        TicketResponse ticketResponse=generateTicket(ticket.getTicketId());
+        return ticketResponse;
+    }
+    public TicketResponse generateTicket(String ticketId){
+        Ticket ticket=ticketRepository.findById(ticketId).get();
         TicketResponse ticketResponse=TicketResponse.builder()
                 .bookedSeats(ticket.getBookedSeats())
                 .movieName(ticket.getMovieName())

@@ -16,7 +16,7 @@ import java.util.List;
 public class TicketResponse {
     private String movieName;
     private String theaterName;
-    private List<String> bookedSeats;
+    private String bookedSeats;
     private LocalTime showTime;
     private LocalDate showDate;
     private Integer totalAmount;
