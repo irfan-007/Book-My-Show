@@ -65,6 +65,10 @@ public class TicketService {
         // SAVE everything back to DB
         showSeatsRepository.saveAll(showSeatList);
         ticketRepository.save(ticket);
+        List<Ticket> ticketList=show.getTicketList();
+        ticketList.add(ticket);
+        show.setTicketList(ticketList);
+        showRepository.save(show);
         // return ticket response DTO
         TicketResponse ticketResponse=generateTicket(ticket.getTicketId());
         return ticketResponse;

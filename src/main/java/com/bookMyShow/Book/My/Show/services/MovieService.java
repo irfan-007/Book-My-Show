@@ -3,6 +3,7 @@ package com.bookMyShow.Book.My.Show.services;
 import com.bookMyShow.Book.My.Show.models.Movie;
 import com.bookMyShow.Book.My.Show.models.Show;
 import com.bookMyShow.Book.My.Show.models.Theater;
+import com.bookMyShow.Book.My.Show.models.Ticket;
 import com.bookMyShow.Book.My.Show.repositories.MovieRepository;
 import com.bookMyShow.Book.My.Show.repositories.TheaterRepository;
 import com.bookMyShow.Book.My.Show.requestDTOs.MovieRequest;
@@ -65,5 +66,19 @@ public class MovieService {
             responseList.add(movieResponse);
         }
         return responseList;
+    }
+    public Long getGrossRevenueFromMovie(Integer movieId){
+        // get movie entity and shows
+        Movie movie=movieRepository.findById(movieId).get();
+        List<Show> showList=movie.getShows();
+        Long sum=0L;
+        for(Show show:showList){
+            // get ticket list and calculate total
+            List<Ticket> ticketList=show.getTicketList();
+            for(Ticket ticket:ticketList){
+                sum+=ticket.getTotalAmount();
+            }
+        }
+        return sum;
     }
 }

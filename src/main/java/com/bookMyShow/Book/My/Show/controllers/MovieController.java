@@ -31,4 +31,9 @@ public class MovieController {
         List<MovieResponse> res=movieService.getMovieListOfTheater(theaterId);
         return new ResponseEntity<>(res,HttpStatus.OK);
     }
+    @GetMapping("gross-revenue-from-movie")
+    public ResponseEntity getGrossRevenueFromMovie(@RequestParam Integer movieId){
+        Long res=movieService.getGrossRevenueFromMovie(movieId);
+        return new ResponseEntity<>(res,HttpStatus.OK);
+    }
 }
